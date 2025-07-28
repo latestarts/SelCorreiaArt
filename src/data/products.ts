@@ -1,0 +1,467 @@
+// src/data/products.ts
+import type { Product } from '../types/Product';
+
+const products: Product[] = [
+  {
+    id: 1,
+    name: 'Cross Keychain with Blue Pebbles',
+    price: '$18',
+    image: '/images/product1.png',
+    description: 'Clear resin cross keychain with blue and white stones embedded inside. Includes a silver chain and keyring. Fully customizable.',
+    category: 'Keychain',
+    material: 'Resin, stones, metal',
+    attachment: 'Silver chain and keyring',
+    color: 'Blue, white',
+    bgcolor: 'Black',
+    discount: 10, // 10% discount
+  },
+  {
+    id: 2,
+    name: 'Pink-Purple Ornamental Cross Keychain',
+    price: '$22',
+    image: '/images/product2.png',
+    description: 'Gradient pink-to-purple resin cross with white ornamental patterns. Finished with a silver chain. Fully customizable.',
+    category: 'Keychain',
+    material: 'Resin, metal',
+    attachment: 'Silver chain and keyring',
+    color: 'Pink, purple, white',
+    bgcolor: 'Black',
+    discount: 15, // 15% discount
+  },
+  {
+    id: 3,
+    name: 'Alphabet Resin Letter Keychains Set',
+    price: '$30',
+    image: '/images/product3.png',
+    description: 'A set of 9 resin letter keychains with glitter and unique embedded elements. Fully customizable with initials or names.',
+    category: 'Keychain',
+    material: 'Resin, glitter, metal',
+    attachment: 'Silver chain and keyring',
+    color: 'Multi-color',
+    bgcolor: 'White',
+    discount: 10, // 10% discount
+  },
+  {
+    id: 4,
+    name: 'Dried Flower Resin Cross Keychain',
+    price: '$25',
+    image: '/images/product4.png',
+    description: 'Clear resin cross featuring dried petals, green fern-like foliage, and gold flecks. Fully customizable.',
+    category: 'Keychain',
+    material: 'Resin, dried flowers, metal',
+    attachment: 'Silver chain and keyring',
+    color: 'Clear, green, gold',
+    bgcolor: 'Green leaf',
+    discount: 20, // 20% discount
+  },
+  {
+    id: 5,
+    name: 'Pink Gradient Resin Bookmark',
+    price: '$16',
+    image: '/images/product5.png',
+    description: 'Pink-to-clear resin bookmark with silver foils and a silver tassel. Includes custom name engraving. Fully customizable.',
+    category: 'Bookmark',
+    material: 'Resin, silver foil',
+    attachment: 'Silver tassel',
+    color: 'Pink, silver, clear',
+    bgcolor: 'White',
+    discount: 5, // 5% discount
+  },
+  {
+    id: 6,
+    name: 'Bone-Shaped Pet Keychain',
+    price: '$15',
+    image: '/images/product6.png',
+    description: 'Transparent bone-shaped resin keychain with gold flakes and a red heart. Add your pet’s name. Fully customizable.',
+    category: 'Keychain',
+    material: 'Resin, gold flakes, metal',
+    attachment: 'Silver chain and keyring',
+    color: 'Clear, gold, red',
+    bgcolor: 'White',
+    discount: 10, // 10% discount
+  },
+  {
+    id: 7,
+    name: 'Heart Pendant Necklace with Stars',
+    price: '$20',
+    image: '/images/product7.png',
+    description: 'Clear resin heart pendant with gold stars and glitter, paired with a silver chain. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, glitter, metal',
+    attachment: 'Silver chain',
+    color: 'Clear, gold',
+    bgcolor: 'White',
+    discount: 15, // 15% discount
+  },
+  {
+    id: 8,
+    name: 'Gold-Flake Heart Pendant Necklace',
+    price: '$22',
+    image: '/images/product8.png',
+    description: 'Heart-shaped resin pendant with gold flakes on a gold-toned chain. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, gold flakes, metal',
+    attachment: 'Gold chain',
+    color: 'Clear, gold',
+    bgcolor: 'White',
+    discount: 10, // 10% discount
+  },
+  {
+    id: 9,
+    name: 'Butterfly Charm Necklaces',
+    price: '$28',
+    image: '/images/product9.png',
+    description: 'Gold and silver chain necklaces with resin butterfly charms in multiple colors. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, glitter, metal',
+    attachment: 'Gold and silver chains',
+    color: 'Black, red, white, blue',
+    bgcolor: 'White',
+    discount: 20, // 20% discount
+  },
+  {
+    id: 10,
+    name: 'Green Glitter Hoop Earrings',
+    price: '$18',
+    image: '/images/product10.png',
+    description: 'Resin hoop earrings with green and gold glitter, featuring silver hooks. Fully customizable.',
+    category: 'Earrings',
+    material: 'Resin, glitter, metal',
+    attachment: 'Silver hooks',
+    color: 'Green, gold',
+    bgcolor: 'Green leaf',
+    discount: 20, //20% discount
+  },
+  {
+    id: 11,
+    name: 'Gold Star Chain Bracelet',
+    price: '$19',
+    image: '/images/product11.png',
+    description: 'Gold chain bracelet with brown and translucent resin star charms. Fully customizable.',
+    category: 'Bracelet',
+    material: 'Resin, metal',
+    attachment: 'Gold chain',
+    color: 'Brown, clear',
+    bgcolor: 'Green leaf',
+    discount: 20, // 20% discount
+  },
+  {
+    id: 12,
+    name: 'Turquoise-Black Cross Pendant',
+    price: '$23',
+    image: '/images/product12.png',
+    description: 'Gradient turquoise-to-black resin cross pendant with a metal chain. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, metal',
+    attachment: 'Silver chain',
+    color: 'Turquoise, black',
+    bgcolor: 'Green leaf',
+    discount: 20, // 20% discount
+  },
+  {
+    id: 13,
+    name: 'Botanical Gold Flake Earrings',
+    price: '$20',
+    image: '/images/product13.png',
+    description: 'Clear resin earrings with gold flakes and red botanical elements. Fully customizable.',
+    category: 'Earrings',
+    material: 'Resin, gold flakes, dried flowers',
+    attachment: 'Gold connectors',
+    color: 'Clear, gold, red',
+    bgcolor: 'White',
+    discount: 30, // 30% discount
+  },
+  {
+    id: 14,
+    name: 'Feather Resin Art Piece',
+    price: '$30',
+    image: '/images/product14.png',
+    description: 'Feather-shaped resin decor with black gloss, white text, and gold flakes. Fully customizable.',
+    category: 'Decor',
+    material: 'Resin, gold flakes',
+    attachment: 'Flat decor',
+    color: 'Black, gold, clear',
+    bgcolor: 'Abstract teal-pink',
+    discount: 25, // 25% discount
+  },
+  {
+    id: 15,
+    name: 'Rainbow Glitter Cross Keychain',
+    price: '$20',
+    image: '/images/product15.png',
+    description: 'Cross keychain with silver, gold, green, blue, and purple glitter layers. Fully customizable.',
+    category: 'Keychain',
+    material: 'Resin, glitter, metal',
+    attachment: 'Silver chain and keyring',
+    color: 'Silver, gold, green, blue, purple',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+  },
+  {
+    id: 16,
+    name: 'Black Resin Bookmark with Quote',
+    price: '$16',
+    image: '/images/product16.png',
+    description: 'Black and clear resin bookmark with white quote text and silver tassel. Fully customizable.',
+    category: 'Bookmark',
+    material: 'Resin',
+    attachment: 'Silver tassel',
+    color: 'Black, white',
+    bgcolor: 'White',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 17,
+    name: 'Red Heart Pendant Necklace',
+    price: '$20',
+    image: '/images/product17.png',
+    description: 'Red resin heart pendant on a silver chain with a textured design. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, metal',
+    attachment: 'Silver chain',
+    color: 'Red',
+    bgcolor: 'White',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 18,
+    name: 'Unicorn Pendant Necklace',
+    price: '$25',
+    image: '/images/product18.png',
+    description: 'White resin unicorn pendant with pink, blue, and yellow mane on a gold chain. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, metal',
+    attachment: 'Gold chain',
+    color: 'White, pink, blue, yellow',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 19,
+    name: 'Butterfly Resin Necklace',
+    price: '$24',
+    image: '/images/product19.png',
+    description: 'Gold chain necklace with a glittery butterfly pendant. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, glitter, metal',
+    attachment: 'Gold chain',
+    color: 'Gold',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 20,
+    name: 'Black String Star Anklet',
+    price: '$14',
+    image: '/images/product20.png',
+    description: 'Simple black anklet with orange resin star charm. Fully customizable.',
+    category: 'Anklet',
+    material: 'String, resin',
+    attachment: 'Adjustable string',
+    color: 'Black, orange',
+    bgcolor: 'Outdoor',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 21,
+    name: 'M Initial Resin Keychain',
+    price: '$15',
+    image: '/images/product21.png',
+    description: 'Clear resin M keychain with gold flakes and a name tag. Fully customizable.',
+    category: 'Keychain',
+    material: 'Resin, gold flakes, metal',
+    attachment: 'Silver chain and keyring',
+    color: 'Clear, gold, black',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 22,
+    name: 'Red-Gold Butterfly Pendant',
+    price: '$22',
+    image: '/images/product22.png',
+    description: 'Resin butterfly pendant with gold details on a gold chain. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, glitter, metal',
+    attachment: 'Gold chain',
+    color: 'Red, gold',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 23,
+    name: 'Red-Gold Resin Bracelet',
+    price: '$20',
+    image: '/images/product23.png',
+    description: 'Gold chain bracelet with a rectangular red-gold resin centerpiece. Fully customizable.',
+    category: 'Bracelet',
+    material: 'Resin, metal',
+    attachment: 'Gold chain with clasp',
+    color: 'Red, gold',
+    bgcolor: 'Blue-white abstract',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 24,
+    name: 'Deep Red Butterfly Pendant',
+    price: '$24',
+    image: '/images/product24.png',
+    description: 'Glossy deep-red resin butterfly pendant with gold flakes. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, glitter, metal',
+    attachment: 'Gold chain',
+    color: 'Red, gold',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 25,
+    name: 'Blue-Green Resin Art',
+    price: '$28',
+    image: '/images/product25.png',
+    description: 'Gradient blue-green resin stream displayed on a green leaf. Fully customizable.',
+    category: 'Decor',
+    material: 'Resin, glitter',
+    attachment: 'Flat decor',
+    color: 'Blue, green, white',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 26,
+    name: 'Z Initial Resin Keychain with Pom-Pom',
+    price: '$18',
+    image: '/images/product26.png',
+    description: 'Blue letter Z resin keychain with gold flakes, pom-pom, and mini bear. Fully customizable.',
+    category: 'Keychain',
+    material: 'Resin, fabric, metal',
+    attachment: 'Silver keyring',
+    color: 'Blue, gold',
+    bgcolor: 'White',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 27,
+    name: 'OK Letter Charm Necklace',
+    price: '$20',
+    image: '/images/product27.png',
+    description: 'Gold chain necklace with resin O and K charms containing gold flakes. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, glitter, metal',
+    attachment: 'Gold chain',
+    color: 'Clear, gold',
+    bgcolor: 'White roses',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 28,
+    name: 'Blue Gradient Cross Keychain',
+    price: '$18',
+    image: '/images/product28.png',
+    description: 'Blue-to-light resin cross keychain with white threads inside. Fully customizable.',
+    category: 'Keychain',
+    material: 'Resin, metal',
+    attachment: 'Silver chain and keyring',
+    color: 'Blue, white',
+    bgcolor: 'White',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 29,
+    name: 'Red Heart Pendant on Gold Chain',
+    price: '$22',
+    image: '/images/product29.png',
+    description: 'Glossy red resin heart pendant with gold flakes on a gold chain. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, metal',
+    attachment: 'Gold chain',
+    color: 'Red, gold',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 30,
+    name: 'Dubai Crescent Resin Pendant',
+    price: '$20',
+    image: '/images/product30.png',
+    description: 'Dark blue glitter crescent resin pendant with “Dubai” text. Fully customizable.',
+    category: 'Necklace',
+    material: 'Resin, glitter, metal',
+    attachment: 'Silver chain',
+    color: 'Blue, silver',
+    bgcolor: 'Green leaf',
+    discount: 30, // 30% discount
+
+  },
+  {
+    id: 31,
+    name: 'Red Leaf Resin Earrings',
+    price: '$18',
+    image: '/images/product31.png',
+    description: 'Round clear resin earrings with embedded red leaf shapes. Fully customizable.',
+    category: 'Earrings',
+    material: 'Resin, dried flowers, metal',
+    attachment: 'Silver hooks',
+    color: 'Clear, red',
+    bgcolor: 'Green leaf',
+    discount: 25, // 25% discount
+
+  },
+  {
+    id: 32,
+    name: 'Blue Glitter Square Earrings',
+    price: '$18',
+    image: '/images/product32.png',
+    description: 'Dangling hollow square resin earrings with blue glitter edges. Fully customizable.',
+    category: 'Earrings',
+    material: 'Resin, glitter, metal',
+    attachment: 'Silver hooks',
+    color: 'Blue, silver',
+    bgcolor: 'White',
+    discount: 15, // 15% discount
+
+  },
+  {
+    id: 33,
+    name: 'Purple Gradient Diamond Earrings',
+    price: '$20',
+    image: '/images/product33.png',
+    description: 'Diamond-shaped resin earrings with purple glitter gradient. Fully customizable.',
+    category: 'Earrings',
+    material: 'Resin, glitter, metal',
+    attachment: 'Silver hooks',
+    color: 'Purple, clear',
+    bgcolor: 'Grey',
+    discount: 20, // 20% discount
+  },
+  {
+    id: 34,
+    name: 'Blue Butterfly Charm Bracelet',
+    price: '$22',
+    image: '/images/product34.png',
+    description: 'Gold chain bracelet with blue resin butterfly charm. Fully customizable.',
+    category: 'Bracelet',
+    material: 'Resin, glitter, metal',
+    attachment: 'Gold chain with clasp',
+    color: 'Blue, gold',
+    bgcolor: 'White',
+    discount: 30, // 30% discount
+  },
+ 
+];
+
+export default products;
