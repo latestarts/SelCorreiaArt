@@ -1,5 +1,7 @@
 import React from "react";
-import aboutLogo from "/icons/SelCorreiaArtLogo.jpeg"; // Ensure this image is available
+const aboutLogo = `${
+  import.meta.env.VITE_BASE_URL
+}icons/SelCorreiaArtLogo.jpeg`; // Ensure this image is available
 
 const About: React.FC = () => {
   return (

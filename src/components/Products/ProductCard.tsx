@@ -8,6 +8,7 @@ import {
   removeFromCart,
 } from "../../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { generateWhatsAppBuyNowLink } from "../../utils/whatsapp";
 
 const { Meta } = Card;
 const { Text } = Typography;
@@ -53,12 +54,7 @@ const ProductCard: React.FC<Props> = ({ product }) => {
 
   const handleBuy = (e: React.MouseEvent) => {
     e.stopPropagation();
-    const productUrl = `${window.location.origin}/product/${product.id}`;
-    const whatsappUrl = `https://wa.me/+15197029537?text=${encodeURIComponent(
-      `Hi, I'm interested in buying: ${product.name} (Quantity: ${
-        quantity || 1
-      })\nLink: ${productUrl}`
-    )}`;
+    const whatsappUrl = generateWhatsAppBuyNowLink(product, quantity);
     window.open(whatsappUrl, "_blank");
   };
 

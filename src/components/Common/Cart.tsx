@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Button, InputNumber, List, Typography, Divider, Row, Col } from "antd";
 import { deleteFromCart, updateQuantity } from "../../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
+import { generateWhatsAppCartMessage } from "../../utils/whatsapp";
 
 const { Title, Text } = Typography;
 
@@ -43,24 +44,13 @@ const Cart: React.FC = () => {
   }, 0);
 
   const handleWhatsAppOrder = () => {
-    const message = cartItems
-      .map((item) => {
-        const basePrice = parsePrice(item.price);
-        const discountAmount = item.discount
-          ? (basePrice * item.discount) / 100
-          : 0;
-        const discountedPrice = basePrice - discountAmount;
-        return `${item.name} (Qty: ${item.quantity || 1}) - $${(
-          discountedPrice * (item.quantity || 1)
-        ).toFixed(2)}\nLink: ${window.location.origin}/product/${item.id}`;
-      })
-      .join("\n\n");
-
-    const fullMessage = `Hello, I want to order:\n${message}\n\nTotal: $${totalPrice.toFixed(
-      2
-    )} ${totalSaved > 0 ? `(You saved: $${totalSaved.toFixed(2)})` : ""}`;
+    const message = generateWhatsAppCartMessage(
+      cartItems,
+      totalPrice,
+      totalSaved
+    );
     const whatsappUrl = `https://wa.me/+15197029537?text=${encodeURIComponent(
-      fullMessage
+      message
     )}`;
     window.open(whatsappUrl, "_blank");
   };

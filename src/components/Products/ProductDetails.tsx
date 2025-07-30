@@ -4,6 +4,7 @@ import products from "../../data/products";
 import { Button, Space, Tooltip } from "antd";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { addToCart, removeFromCart } from "../../store/slices/cartSlice";
+import { generateWhatsAppBuyNowLink } from "../../utils/whatsapp";
 
 const colorNameToCss: Record<string, string> = {
   Blue: "#007bff",
@@ -71,13 +72,9 @@ const ProductDetails: React.FC = () => {
     }
   };
 
-  const handleBuyNow = () => {
-    const productUrl = `${window.location.origin}/product/${product.id}`;
-    const whatsappUrl = `https://wa.me/+15197029537?text=${encodeURIComponent(
-      `Hi, I'm interested in buying: ${product.name} (Quantity: ${
-        quantity || 1
-      })\nLink: ${productUrl}`
-    )}`;
+  const handleBuy = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const whatsappUrl = generateWhatsAppBuyNowLink(product, quantity);
     window.open(whatsappUrl, "_blank");
   };
 
@@ -254,7 +251,7 @@ const ProductDetails: React.FC = () => {
             )}
 
             <Button
-              onClick={handleBuyNow}
+              onClick={handleBuy}
               style={{
                 minWidth: 140,
                 backgroundColor: "#25D366",

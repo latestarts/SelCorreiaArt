@@ -4,10 +4,12 @@ import PageLoader from "./components/Common/PageLoader";
 import "./styles/route-transition.css";
 import Header from "./components/Common/Header";
 import Footer from "./components/Common/Footer";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 // Lazy imports
 const FloatingCartButton = lazy(() => import("./components/Common/CartButton"));
-const Home = lazy(() => import("./components/Common/Home"));
+const Home = lazy(() => import("./components/Common/Home/Home"));
 const Cart = lazy(() => import("./components/Common/Cart"));
 const About = lazy(() => import("./components/Common/About"));
 const ProductDetails = lazy(
@@ -22,6 +24,14 @@ const NotFound = lazy(() => import("./components/Common/NotFound"));
 const App: React.FC = () => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      mirror: true, // 👈 this makes animations reverse on scroll up
+      once: false, // 👈 keeps triggering on every scroll, not just once
+      offset: window.innerHeight * 0.3,
+    });
+  }, []);
 
   // useEffect(() => {
   //   const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -53,6 +63,14 @@ const App: React.FC = () => {
               </Suspense>
             }
           />
+          {/* <Route
+            path="/SelCorreiaArt/"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <Home />
+              </Suspense>
+            }
+          /> */}
           <Route
             path="/product-list"
             element={

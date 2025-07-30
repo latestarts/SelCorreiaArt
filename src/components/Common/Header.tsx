@@ -39,7 +39,9 @@ const Header: React.FC = () => {
           style={{ cursor: "pointer", userSelect: "none" }}
         >
           <img
-            src="/icons/SelCorreiaArtLogo.jpeg"
+            src={`${
+              import.meta.env.VITE_BASE_URL
+            }/icons/SelCorreiaArtLogo.jpeg`}
             alt="SelCorreiaArt Logo"
             style={{
               width: "40px",
