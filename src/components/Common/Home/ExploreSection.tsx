@@ -21,55 +21,57 @@ const ExploreSection = () => {
         </div>
 
         <div className="row g-4">
+          {/* Earrings */}
           <div className="col-md-4" data-aos="fade-right">
             {earrings && (
-              <>
+              <div className="d-flex flex-column align-items-center text-center h-100">
                 <img
                   src={earrings.image}
                   alt={earrings.name}
-                  className="img-fluid rounded shadow mx-auto d-block"
+                  className="img-fluid rounded shadow"
                   style={{ maxWidth: "300px" }}
                 />
-
                 <h4 className="mt-3">Elegant Earrings</h4>
                 <p className="text-muted">
-                  Lightweight, statement earrings infused with shimmer and
-                  color.
+                  Shimmery, lightweight statement earrings
                 </p>
-              </>
+              </div>
             )}
           </div>
+
+          {/* Bracelets */}
           <div className="col-md-4" data-aos="zoom-in">
             {bracelets && (
-              <>
+              <div className="d-flex flex-column align-items-center text-center h-100">
                 <img
                   src={bracelets.image}
                   alt={bracelets.name}
-                  className="img-fluid rounded shadow mx-auto d-block"
+                  className="img-fluid rounded shadow"
                   style={{ maxWidth: "300px" }}
                 />
                 <h4 className="mt-3">Artistic Bracelets</h4>
                 <p className="text-muted">
                   Wrap your wrist in handmade beauty that tells a story.
                 </p>
-              </>
+              </div>
             )}
           </div>
+
+          {/* Keychains */}
           <div className="col-md-4" data-aos="fade-left">
             {keychains && (
-              <>
+              <div className="d-flex flex-column align-items-center text-center h-100">
                 <img
                   src={keychains.image}
                   alt={keychains.name}
-                  className="img-fluid rounded shadow mx-auto d-block"
+                  className="img-fluid rounded shadow"
                   style={{ maxWidth: "300px" }}
                 />
                 <h4 className="mt-3">Custom Keychains</h4>
                 <p className="text-muted">
-                  Fun, personalized pieces that make everyday items feel
-                  special.
+                  Personalized keychains with a fun twist.
                 </p>
-              </>
+              </div>
             )}
           </div>
         </div>
