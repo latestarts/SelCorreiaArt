@@ -57,7 +57,6 @@ const ExploreSection = () => {
             )}
           </div>
 
-          {/* Keychains section */}
           <div className="col-md-4" data-aos="fade-left">
             {keychains && (
               <div className="d-flex flex-column align-items-center text-center h-100">
