@@ -1,14 +1,14 @@
 import React from "react";
-import { Card, Button } from "antd";
+import { Button, Card } from "antd";
+import { useNavigate } from "react-router-dom";
 import type { Product } from "../../types/Product";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import {
   addToCart,
-  updateQuantity,
   removeFromCart,
+  updateQuantity,
 } from "../../store/slices/cartSlice";
-
-const { Meta } = Card;
+import { generateWhatsAppBuyNowLink } from "../../utils/whatsapp";
 
 interface Props {
   product: Product;
@@ -16,164 +16,82 @@ interface Props {
 
 const VideoProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const cartItem = useAppSelector((state) =>
     state.cart.items.find((item) => item.id === product.id)
   );
   const quantity = cartItem?.quantity ?? 0;
 
-  const handleAddToCart = () => {
-    dispatch(addToCart(product));
-  };
-
-  const incrementQuantity = () => {
-    dispatch(updateQuantity({ id: product.id, quantity: quantity + 1 }));
-  };
-
-  const decrementQuantity = () => {
-    if (quantity === 1) {
-      dispatch(removeFromCart(product.id));
-    } else {
-      dispatch(updateQuantity({ id: product.id, quantity: quantity - 1 }));
-    }
-  };
-
-  const handleBuy = () => {
-    const whatsappUrl = `https://wa.me/+15197029537?text=${encodeURIComponent(
-      `Hi, I'm interested in buying: ${product.name} (Quantity: ${
-        quantity || 1
-      })`
-    )}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
   return (
-    <Card
-      hoverable
-      style={{
-        width: "100%",
-        borderRadius: 10,
-        marginBottom: 24,
-        display: "flex",
-        flexDirection: "column",
-        minHeight: 380, // use minHeight instead of fixed height
-        overflow: "hidden",
-      }}
-    >
-      {product.video ? (
-        <video
-          src={product.video}
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="rounded-top"
-          style={{
-            width: "100%",
-            height: 200,
-            objectFit: "cover",
-            backgroundColor: "#000",
-            borderRadius: "10px 10px 0 0",
-            flexShrink: 0,
-          }}
-        />
-      ) : (
-        <img
-          alt={product.name}
-          src={product.image}
-          className="img-fluid rounded-top"
-          style={{
-            height: 200,
-            objectFit: "cover",
-            borderRadius: "10px 10px 0 0",
-            flexShrink: 0,
-          }}
-        />
-      )}
-
-      <div
-        style={{
-          flexGrow: 1,
-          padding: "12px 0",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          overflow: "hidden",
-        }}
-      >
-        <Meta
-          title={product.name}
-          description={
-            <>
-              <div>{`Price: ${product.price}`}</div>
-              <div
-                style={{
-                  marginTop: 8,
-                  fontSize: 14,
-                  color: "#555",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 3,
-                  WebkitBoxOrient: "vertical",
-                }}
-              >
-                {product.description}
-              </div>
-            </>
-          }
-        />
+    <Card hoverable className="product-card">
+      <div className="product-media">
+        {product.video ? (
+          <video src={product.video} autoPlay loop muted playsInline />
+        ) : (
+          <img src={product.image} alt={product.name} />
+        )}
+        <div className="product-overlay">
+          <span className="pill pill-surface">Studio reel</span>
+          {product.discount ? (
+            <span className="pill pill-discount">Save {product.discount}%</span>
+          ) : null}
+        </div>
       </div>
 
-      <div
-        style={{
-          paddingTop: 16,
-          borderTop: "1px solid #f0f0f0",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 8,
-          height: 56,
-          boxSizing: "border-box",
-          flexShrink: 0,
-        }}
-      >
+      <div className="product-content">
+        <h3 className="product-title">{product.name}</h3>
+        <p className="product-description">
+          {product.description.length > 100
+            ? `${product.description.slice(0, 100).trim()}...`
+            : product.description}
+        </p>
+        <div className="price-stack price-stack-labeled" style={{ marginTop: "1rem" }}>
+          <span className="price-current">{product.price}</span>
+        </div>
+      </div>
+
+      <div className="product-footer">
         {quantity === 0 ? (
-          <Button
-            type="primary"
-            style={{ flex: 1, height: 40 }}
-            onClick={handleAddToCart}
-          >
-            Add to Cart
+          <Button className="button-fill" onClick={() => dispatch(addToCart(product))}>
+            Add to cart
           </Button>
         ) : (
-          <>
-            <Button style={{ height: 40 }} onClick={decrementQuantity}>
-              −
-            </Button>
-            <span
-              style={{
-                minWidth: 24,
-                textAlign: "center",
-                display: "inline-block",
-                lineHeight: "40px",
-                userSelect: "none",
+          <div className="stepper">
+            <Button
+              className="stepper-button"
+              onClick={() => {
+                if (quantity === 1) {
+                  dispatch(removeFromCart(product.id));
+                  return;
+                }
+                dispatch(updateQuantity({ id: product.id, quantity: quantity - 1 }));
               }}
             >
-              {quantity}
-            </span>
-            <Button style={{ height: 40 }} onClick={incrementQuantity}>
+              -
+            </Button>
+            <span className="stepper-value">{quantity}</span>
+            <Button
+              className="stepper-button"
+              onClick={() =>
+                dispatch(updateQuantity({ id: product.id, quantity: quantity + 1 }))
+              }
+            >
               +
             </Button>
-          </>
+          </div>
         )}
 
-        <Button
-          type="default"
-          style={{ flex: 1, height: 40 }}
-          onClick={handleBuy}
-        >
-          Buy
-        </Button>
+        <div className="product-actions">
+          <Button className="button-quiet" onClick={() => navigate(`/product/${product.id}`)}>
+            View product
+          </Button>
+          <Button
+            className="button-whatsapp"
+            onClick={() => window.open(generateWhatsAppBuyNowLink(product, quantity || 1), "_blank")}
+          >
+            Buy now
+          </Button>
+        </div>
       </div>
     </Card>
   );

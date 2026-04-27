@@ -1,23 +1,28 @@
+import { ArrowRightOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import MotionReveal from "../MotionReveal";
 
 const AboutSection = () => {
   return (
-    <section
-      className="text-white py-5"
-      style={{
-        background: `linear-gradient(to bottom right, #141e30, #243b55)`,
-      }}
-    >
-      <div className="container text-center" data-aos="zoom-in">
-        <h2 className="fw-bold mb-3">About SelCorreia Art</h2>
-        <p className="lead">
-          We create expressive resin art that captures the textures of nature
-          and the soul of storytelling.
+    <section className="section-block">
+      <MotionReveal className="cta-panel">
+        <span className="eyebrow" style={{ color: "rgba(255, 249, 242, 0.72)" }}>
+          Artist-led brand
+        </span>
+        <h2 className="section-title" style={{ maxWidth: "34rem", marginTop: 0 }}>
+          Buyers trust handmade work faster when the maker feels present.
+        </h2>
+        <p className="section-copy" style={{ maxWidth: "38rem", marginTop: "1rem" }}>
+          The about section now supports the sale instead of distracting from
+          it. It builds confidence, adds personality, and gives the products a
+          stronger story context.
         </p>
-        <Link to="/about" className="btn btn-light mt-3 px-4 py-2">
-          Learn More
-        </Link>
-      </div>
+        <div className="inline-actions">
+          <Link to="/about" className="btn-secondary-brand">
+            Learn more about Selina <ArrowRightOutlined />
+          </Link>
+        </div>
+      </MotionReveal>
     </section>
   );
 };

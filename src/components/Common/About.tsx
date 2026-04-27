@@ -1,81 +1,123 @@
 import React from "react";
-const aboutLogo = `${
-  import.meta.env.VITE_BASE_URL
-}icons/SelCorreiaArtLogo.jpeg`; // Ensure this image is available
+import { Link } from "react-router-dom";
 
 const About: React.FC = () => {
   return (
-    <div className="container-fluid px-md-5">
-      {/* Title */}
-      <h2 className="text-center mb-5 text-primary">About SelCorreia Art</h2>
-
-      {/* Main Content Row */}
-      <div className="row align-items-center">
-        {/* Left Text Section */}
-        <div className="col-md-6 mb-4 mb-md-0">
-          <h4 className="text-dark">Welcome to SelCorreia Art</h4>
-          <p>
-            SelCorreia Art is a Canadian-based creative studio specializing in
-            unique handcrafted resin art, personalized sketches, paintings, and
-            custom gifts.
-          </p>
-          <p>
-            Each creation is a reflection of individuality, passion, and
-            artistic precision. From elegant resin coasters to intricate
-            paintings, every item is lovingly made.
-          </p>
-          <ul className="list-unstyled">
-            <li>📍 Based in Canada | Self-Taught Resin Artist</li>
-            <li>✨ Custom Coasters | Jewelry | Art Prints | Decor</li>
-            <li>📬 DM or Email for Orders & Commissions</li>
-            <li>
-              Main Account: <strong>@selina_correia</strong>
-            </li>
-            <li>
-              Art Account: <strong>@selcorreia_art</strong>
-            </li>
-          </ul>
-        </div>
-
-        {/* Right Logo Image */}
-        <div className="col-md-6 d-flex justify-content-center">
-          <img
-            src={aboutLogo}
-            alt="SelCorreia Art Logo"
-            className="img-fluid rounded shadow float-animate"
-            style={{ maxHeight: "280px", objectFit: "contain" }}
-          />
-        </div>
-      </div>
-
-      {/* Divider */}
-      <hr className="my-5" />
-
-      {/* Artists Section */}
-      <div className="text-center">
-        <h3 className="text-secondary mb-4">🎨 Meet the Artist</h3>
-        <div className="row justify-content-center">
-          <div className="col-md-6 mb-4">
-            <div className="card h-100 shadow-sm border-0">
-              <div className="card-body">
-                <h5 className="card-title">SelCorreia Art</h5>
-                <p className="card-text text-muted">
-                  A self-taught artist who brings ideas to life through resin,
-                  sketching, and painting. Known for thoughtful detail and
-                  personal touches. Connect for custom pieces or personalized
-                  commissions.
-                </p>
-                <p className="mb-0">
-                  🎨 Main Account: <strong>@selina_correia</strong>
-                  <br />
-                  🖌️ Art Account: <strong>@selcorreia_art</strong>
-                </p>
-              </div>
+    <section>
+      <div className="page-hero-panel" style={{ marginBottom: "1.6rem" }}>
+        <div className="page-hero-grid">
+          <div>
+            <span className="eyebrow">About the studio</span>
+            <h1 className="page-title">A warmer story behind every handcrafted piece.</h1>
+            <p className="page-copy" style={{ marginTop: "1rem", maxWidth: "38rem" }}>
+              This page now supports trust and purchase intent: who makes the work,
+              what makes it personal, and why custom conversation is part of the experience.
+            </p>
+          </div>
+          <div className="page-summary">
+            <div className="summary-chip">
+              <span className="summary-chip-label">Based in</span>
+              <span className="summary-chip-value">Canada</span>
+            </div>
+            <div className="summary-chip">
+              <span className="summary-chip-label">Focus</span>
+              <span className="summary-chip-value">Resin art</span>
+            </div>
+            <div className="summary-chip">
+              <span className="summary-chip-label">Orders</span>
+              <span className="summary-chip-value">Custom friendly</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      <div className="about-grid">
+        <div className="about-story-card about-panel">
+          <span className="eyebrow">Studio story</span>
+          <h2 className="section-title" style={{ fontSize: "3rem" }}>
+            SelCorreiaArt is built around keepsakes that feel personal fast.
+          </h2>
+          <p className="section-copy">
+            Based in Canada, the studio creates handcrafted resin work, custom
+            gifts, jewelry, and small decor pieces that feel intimate rather
+            than mass-produced. That is now reflected directly in the site’s
+            layout, copy, and purchase flow.
+          </p>
+          <p className="section-copy">
+            Each item is meant to carry texture, memory, and personality.
+            Instead of a generic product wall, the updated interface gives each
+            product more room to feel intentional and worth buying.
+          </p>
+
+          <div className="social-list">
+            <a
+              className="social-row"
+              href="https://www.instagram.com/selina_correia/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>
+                <div className="social-row-label">Main account</div>
+                <div className="social-row-value">@selina_correia</div>
+              </div>
+              <span className="pill pill-surface">Open Instagram</span>
+            </a>
+            <a
+              className="social-row"
+              href="https://www.instagram.com/selcorreia_art/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <div>
+                <div className="social-row-label">Art account</div>
+                <div className="social-row-value">@selcorreia_art</div>
+              </div>
+              <span className="pill pill-surface">Open Instagram</span>
+            </a>
+            <div className="social-row">
+              <div>
+                <div className="social-row-label">Best for</div>
+                <div className="social-row-value">Custom gifts and commissions</div>
+              </div>
+              <span className="pill pill-surface">Direct order</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="about-portrait">
+            <img
+              src={`${import.meta.env.VITE_BASE_URL}content-images/artist-image.jpeg`}
+              alt="SelCorreiaArt artist portrait"
+            />
+          </div>
+
+          <div className="about-highlight-grid" style={{ marginTop: "1.4rem" }}>
+            <article className="value-card">
+              <div className="feature-kicker">01</div>
+              <h3>Custom-first</h3>
+              <p>Products and ordering support one-on-one customization naturally.</p>
+            </article>
+            <article className="value-card">
+              <div className="feature-kicker">02</div>
+              <h3>Giftable presentation</h3>
+              <p>The new layout gives each piece a more premium, present-worthy feel.</p>
+            </article>
+            <article className="value-card">
+              <div className="feature-kicker">03</div>
+              <h3>Mobile confidence</h3>
+              <p>Phone users get large imagery, better spacing, and easier buying actions.</p>
+            </article>
+          </div>
+
+          <div className="inline-actions">
+            <Link to="/product-list" className="btn-primary-brand">
+              Explore products
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

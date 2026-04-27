@@ -1,49 +1,85 @@
-import { TypeAnimation } from "react-type-animation";
+import { ArrowRightOutlined } from "@ant-design/icons";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
-  return (
-    <section
-      className="text-white position-relative d-flex align-items-center"
-      style={{
-        minHeight: "100vh",
-        background: `url(${
-          import.meta.env.VITE_BASE_URL
-        }content-images/home-hero.jpg) no-repeat center center/cover`,
-        overflow: "hidden",
-      }}
-    >
-      <div className="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-75"></div>
+  const baseUrl = import.meta.env.VITE_BASE_URL;
 
-      <div className="container position-relative z-3">
-        <div className="row align-items-center">
-          <div className="col-lg-6 text-center text-lg-start">
-            <TypeAnimation
-              sequence={["SelCorreia Art", 2000, "", 1000]}
-              wrapper="h1"
-              speed={40}
-              repeat={Infinity}
-              className="display-2 fw-bold mb-4"
-            />
-            <p className="lead mb-4">
-              Custom resin art inspired by nature, created with love and a touch
-              of elegance.
+  return (
+    <section className="hero-section">
+      <div className="hero-grid">
+        <motion.div
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span className="eyebrow">Made in Canada</span>
+          <div className="hero-copy">
+            <h1 className="hero-title">SelCorreiaArt</h1>
+            <p className="hero-lede">
+              Small-batch creations that feel personal instantly.
             </p>
-            <Link to="/product-list" className="btn btn-primary px-4 py-2">
-              Browse Products
+            <p className="hero-subtitle">
+              SelCorreiaArt turns resin, color, and detail into keepsakes that
+              feel intimate, giftable, and ready to order. See something close
+              to your idea? We also make customized items with names, colors,
+              themes, charms, and gift-ready details.
+            </p>
+          </div>
+
+          <div className="hero-actions">
+            <Link to="/product-list" className="btn-primary-brand">
+              Shop the collection <ArrowRightOutlined />
+            </Link>
+            <Link to="/about" className="btn-secondary-brand">
+              Meet the artist
             </Link>
           </div>
-          <div className="col-lg-6 d-none d-lg-block text-center">
-            <img
-              src={`${
-                import.meta.env.VITE_BASE_URL
-              }content-images/home-hero-2.jpg`}
-              alt="Artist"
-              className="img-fluid rounded-4 shadow float-animation"
-              style={{ maxWidth: "80%" }}
-            />
+
+          <div className="custom-callout">
+            <strong>Want it customized?</strong>
+            <span>
+              Message us for personalized colors, initials, names, keepsake
+              details, or a completely custom gift idea.
+            </span>
           </div>
-        </div>
+
+          <div className="hero-stats">
+            <div className="stat-card">
+              <span className="stat-value">34+</span>
+              <span className="stat-label">Custom-ready pieces across jewelry, gifts, and decor.</span>
+            </div>
+            <div className="stat-card">
+              <span className="stat-value">1:1</span>
+              <span className="stat-label">Conversation-first ordering through direct WhatsApp checkout.</span>
+            </div>
+            <div className="stat-card">
+              <span className="stat-value">Giftable</span>
+              <span className="stat-label">Designed to feel premium on desktop and effortless on phone.</span>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="hero-visual"
+          initial={{ opacity: 0, x: 28 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
+        >
+          <div className="hero-frame hero-frame-main">
+            <img src={`${baseUrl}content-images/home-hero.jpg`} alt="Featured resin artwork" />
+          </div>
+          <div className="hero-frame hero-frame-secondary">
+            <img src={`${baseUrl}content-images/home-hero-2.jpg`} alt="Artist with handcrafted work" />
+          </div>
+          <div className="hero-floating-note">
+            <span className="hero-note-title">Conversion-focused layout</span>
+            <p className="hero-note-copy">
+              Strong imagery, fewer distractions, and clear CTAs keep the buyer
+              moving toward product pages and checkout.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

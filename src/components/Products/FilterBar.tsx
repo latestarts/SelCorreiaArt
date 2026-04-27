@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Popover, Button, Tooltip } from "antd";
+import React, { useMemo } from "react";
+import { Button, Popover, Tooltip } from "antd";
 
 interface FilterBarProps {
   categories: string[];
@@ -15,18 +15,18 @@ interface FilterBarProps {
 }
 
 const colorNameToCss: Record<string, string> = {
-  blue: "#007bff",
+  blue: "#2f71cf",
   white: "#ffffff",
-  pink: "#ff69b4",
-  purple: "#800080",
-  black: "#000000",
-  green: "#28a745",
-  gold: "#ffd700",
-  silver: "#c0c0c0",
-  red: "#dc3545",
-  orange: "#fd7e14",
-  turquoise: "#40e0d0",
-  brown: "#8b4513",
+  pink: "#de7aa2",
+  purple: "#7f58af",
+  black: "#1f1a17",
+  green: "#577c56",
+  gold: "#cda86d",
+  silver: "#c5c8cf",
+  red: "#b84e43",
+  orange: "#d78446",
+  turquoise: "#4aa8ac",
+  brown: "#8b5c44",
   clear: "transparent",
   multi: "#999999",
   "multi-color": "#999999",
@@ -35,7 +35,7 @@ const colorNameToCss: Record<string, string> = {
 const getColorCss = (colorName: string) => {
   const key = colorName.trim().toLowerCase();
   if (key === "multi" || key === "multi-color") {
-    return `repeating-conic-gradient(#999 0% 25%, #ccc 25% 50%)`;
+    return "conic-gradient(#b84e43 0 18%, #d78446 18% 36%, #cda86d 36% 54%, #577c56 54% 72%, #4aa8ac 72% 86%, #7f58af 86% 100%)";
   }
   return colorNameToCss[key] || key;
 };
@@ -57,204 +57,133 @@ const FilterBar: React.FC<FilterBarProps> = ({
   onPriceChange,
   onClearAll,
 }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 576);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 576);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const hasFiltersApplied =
-    selectedCategory !== null ||
-    selectedColor !== null ||
-    selectedPrice !== null;
+  const activeFilters = useMemo(
+    () =>
+      [
+        selectedCategory ? { label: "Category", value: selectedCategory, clear: () => onCategoryChange(null) } : null,
+        selectedColor ? { label: "Color", value: selectedColor, clear: () => onColorChange(null) } : null,
+        selectedPrice ? { label: "Price", value: selectedPrice, clear: () => onPriceChange(null) } : null,
+      ].filter(Boolean) as Array<{ label: string; value: string; clear: () => void }>,
+    [onCategoryChange, onColorChange, onPriceChange, selectedCategory, selectedColor, selectedPrice]
+  );
 
   const renderList = (
     items: string[],
     selected: string | null,
-    onSelect: (val: string | null) => void
+    onSelect: (value: string | null) => void
   ) => (
-    <div style={{ maxHeight: 200, overflowY: "auto", minWidth: 150 }}>
-      <div
-        key="all"
-        onClick={() => onSelect(null)}
-        style={{
-          padding: "6px 12px",
-          cursor: "pointer",
-          fontWeight: !selected ? "bold" : "normal",
-        }}
-      >
-        All
-      </div>
-      {items.map((item) => (
-        <div
-          key={item}
-          onClick={() => onSelect(item)}
-          style={{
-            padding: "6px 12px",
-            cursor: "pointer",
-            fontWeight: selected === item ? "bold" : "normal",
-            backgroundColor: selected === item ? "#e6f7ff" : undefined,
-          }}
+    <div className="filter-popover">
+      <div className="filter-popover-list">
+        <button
+          type="button"
+          className={`filter-popover-item ${!selected ? "filter-popover-item-active" : ""}`}
+          onClick={() => onSelect(null)}
         >
-          {item}
-        </div>
-      ))}
+          All
+        </button>
+        {items.map((item) => (
+          <button
+            type="button"
+            key={item}
+            className={`filter-popover-item ${
+              selected === item ? "filter-popover-item-active" : ""
+            }`}
+            onClick={() => onSelect(item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
     </div>
   );
 
   const renderColorPalette = () => (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 8,
-        maxWidth: 200,
-        maxHeight: 200,
-        overflowY: "auto",
-      }}
-    >
-      {/* "All Colors" circle */}
-      <div
-        onClick={() => onColorChange(null)}
-        style={{
-          position: "relative",
-          width: 24,
-          height: 24,
-          borderRadius: "50%",
-          border: !selectedColor ? "2px solid #1890ff" : "1px solid #ccc",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 12,
-          userSelect: "none",
-        }}
-        title="All Colors"
-      >
-        ×
-      </div>
+    <div className="filter-popover">
+      <div className="color-palette">
+        <Tooltip title="All colors">
+          <button
+            type="button"
+            className={`color-clear ${!selectedColor ? "color-clear-active" : ""}`}
+            onClick={() => onColorChange(null)}
+          >
+            ×
+          </button>
+        </Tooltip>
+        {colors.map((color) => {
+          const isSelected = selectedColor === color;
+          const colorStyle = color.toLowerCase().includes("multi")
+            ? { background: getColorCss(color) }
+            : {
+                backgroundColor: getColorCss(color),
+                borderColor: isLightColor(color) ? "rgba(77, 53, 42, 0.2)" : undefined,
+              };
 
-      {colors.map((color) => {
-        const bgColor = getColorCss(color);
-        const isSelected = selectedColor === color;
-        return (
-          <Tooltip key={color} title={color}>
-            <div
-              onClick={() => {
-                if (isSelected) {
-                  onColorChange(null);
-                } else {
-                  onColorChange(color);
-                }
-              }}
-              style={{
-                position: "relative",
-                width: 24,
-                height: 24,
-                borderRadius: "50%",
-                background: color.toLowerCase().includes("multi")
-                  ? bgColor
-                  : undefined,
-                backgroundColor: !color.toLowerCase().includes("multi")
-                  ? bgColor
-                  : undefined,
-                border: isSelected
-                  ? "2px solid #1890ff"
-                  : isLightColor(color)
-                  ? "1px solid #999"
-                  : "1px solid transparent",
-                cursor: "pointer",
-              }}
-            >
-              {isSelected && (
-                <div
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onColorChange(null);
-                  }}
-                  style={{
-                    position: "absolute",
-                    top: -6,
-                    right: -6,
-                    background: "#1890ff",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: 16,
-                    height: 16,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: 12,
-                    fontWeight: "bold",
-                    cursor: "pointer",
-                    boxShadow: "0 0 4px rgba(0,0,0,0.3)",
-                  }}
-                  title="Clear this color"
-                >
-                  ×
-                </div>
-              )}
-            </div>
-          </Tooltip>
-        );
-      })}
+          return (
+            <Tooltip key={color} title={color}>
+              <button
+                type="button"
+                className={`color-swatch ${isSelected ? "color-swatch-active" : ""}`}
+                style={colorStyle}
+                onClick={() => onColorChange(isSelected ? null : color)}
+              />
+            </Tooltip>
+          );
+        })}
+      </div>
     </div>
   );
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        padding: "8px 0",
-        alignItems: "center",
-        gap: 16,
-        flexWrap: isMobile ? "wrap" : "nowrap",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          display: "flex",
-          gap: 16,
-          alignItems: "center",
-          flexWrap: isMobile ? "wrap" : "nowrap",
-          justifyContent: "center",
-        }}
-      >
+    <>
+      <div className="filter-bar">
         <Popover
           content={renderList(categories, selectedCategory, onCategoryChange)}
           trigger="click"
-          placement="bottom"
+          placement="bottomLeft"
         >
-          <Button type="default">Category: {selectedCategory ?? "All"}</Button>
+          <Button className={`filter-trigger ${selectedCategory ? "filter-trigger-active" : ""}`}>
+            Category: {selectedCategory ?? "All"}
+          </Button>
         </Popover>
 
-        <Popover
-          content={renderColorPalette()}
-          trigger="click"
-          placement="bottom"
-        >
-          <Button type="default">Color: {selectedColor ?? "All"}</Button>
+        <Popover content={renderColorPalette()} trigger="click" placement="bottomLeft">
+          <Button className={`filter-trigger ${selectedColor ? "filter-trigger-active" : ""}`}>
+            Color: {selectedColor ?? "All"}
+          </Button>
         </Popover>
 
         <Popover
           content={renderList(priceRanges, selectedPrice, onPriceChange)}
           trigger="click"
-          placement="bottom"
+          placement="bottomLeft"
         >
-          <Button type="default">Price: {selectedPrice ?? "All"}</Button>
+          <Button className={`filter-trigger ${selectedPrice ? "filter-trigger-active" : ""}`}>
+            Price: {selectedPrice ?? "All"}
+          </Button>
         </Popover>
 
-        {hasFiltersApplied && (
-          <Button type="link" danger onClick={onClearAll}>
-            Clear All Filters
-          </Button>
-        )}
+        {activeFilters.length > 0 ? (
+          <button type="button" className="text-reset-button" onClick={onClearAll}>
+            Clear all filters
+          </button>
+        ) : null}
       </div>
-    </div>
+
+      {activeFilters.length > 0 ? (
+        <div className="active-filter-list" style={{ marginTop: "1rem" }}>
+          {activeFilters.map((filter) => (
+            <div key={filter.label} className="active-filter-chip">
+              <span>
+                {filter.label}: <strong>{filter.value}</strong>
+              </span>
+              <button type="button" onClick={filter.clear} aria-label={`Clear ${filter.label}`}>
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : null}
+    </>
   );
 };
 

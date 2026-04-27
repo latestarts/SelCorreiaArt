@@ -1,60 +1,51 @@
-// src/data/productsWithVideos.ts
 import type { Product } from "../types/Product";
 
-const productsWithVideos: (Product & { video: string; description: string })[] = [
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
+const productsWithVideos: (Product & { video: string })[] = [
   {
     id: 1,
-    name: "iPhone 15",
-    price: "$999",
-    image: "../Public/images/product.jpg", // fallback image (optional)
-    video: "https://www.w3schools.com/html/mov_bbb.mp4",
+    name: "Cross Keychain with Blue Pebbles",
+    price: "$18",
+    image: `${baseUrl}images/product1.png`,
+    video: `${baseUrl}videos/product_vid.mp4`,
     description:
-      "Experience the latest iPhone 15 with stunning display, powerful A16 chip, and amazing camera features.",
+      "A short showcase of one of the brand's most giftable resin keychains, reframed to match the storefront aesthetic.",
+    category: "Keychain",
+    discount: 10,
   },
   {
-    id: 2,
-    name: "Samsung Galaxy S24",
-    price: "$899",
-    image: "../Public/images/product.jpg",
-    video: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm",
+    id: 10,
+    name: "Green Glitter Hoop Earrings",
+    price: "$18",
+    image: `${baseUrl}images/product10.png`,
+    video: `${baseUrl}videos/product_vid.mp4`,
     description:
-      "Samsung Galaxy S24 offers a sleek design, fast processor, and vibrant screen for an incredible mobile experience.",
+      "Studio-style motion preview for earrings that benefit from shimmer, texture, and closer visual storytelling.",
+    category: "Earrings",
+    discount: 20,
   },
   {
-    id: 3,
-    name: "Google Pixel 8",
-    price: "$799",
-    image: "../Public/images/product.jpg",
-    video: "https://media.w3.org/2010/05/sintel/trailer.mp4",
+    id: 11,
+    name: "Gold Star Chain Bracelet",
+    price: "$19",
+    image: `${baseUrl}images/product11.png`,
+    video: `${baseUrl}videos/product_vid.mp4`,
     description:
-      "Google Pixel 8 combines smooth Android experience with the best AI-powered camera technology.",
+      "A warmer, more premium bracelet feature that supports browsing and quick WhatsApp ordering from mobile.",
+    category: "Bracelet",
+    discount: 20,
   },
   {
-    id: 4,
-    name: "OnePlus 12",
-    price: "$749",
-    image: "../Public/images/product.jpg",
-    video: "https://media.w3.org/2010/05/bunny/trailer.mp4",
+    id: 14,
+    name: "Feather Resin Art Piece",
+    price: "$30",
+    image: `${baseUrl}images/product14.png`,
+    video: `${baseUrl}videos/product_vid.mp4`,
     description:
-      "OnePlus 12 delivers blazing fast performance, long battery life, and a fluid user interface.",
-  },
-  {
-    id: 5,
-    name: "Sony Xperia 1 V",
-    price: "$899",
-    image: "../Public/images/product.jpg",
-    video: "https://media.w3.org/2010/05/bunny/movie.mp4",
-    description:
-      "Sony Xperia 1 V offers pro-grade video recording and a stunning 4K OLED display for multimedia lovers.",
-  },
-  {
-    id: 6,
-    name: "Nothing Phone 2",
-    price: "$699",
-    image: "../Public/images/product.jpg",
-    video: "https://media.w3.org/2010/05/video/movie_300.mp4",
-    description:
-      "Nothing Phone 2 features a unique design and smooth performance with OxygenOS.",
+      "Decor-focused video card used to give statement pieces stronger presence and perceived value in the shop.",
+    category: "Decor",
+    discount: 25,
   },
 ];
 
